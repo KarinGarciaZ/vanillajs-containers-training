@@ -1,12 +1,61 @@
-const boxes = [];
+let boxes = [];
 const container = document.querySelector('.container');
+const collapseButton = document.querySelector('.btn-collapse');
+const randomButton = document.querySelector('.btn-random');
+const generateButton = document.querySelector('.btn-generate');
 
-const randomNumberOfBoxes = Math.random() * 19 + 1;
-
-for (let i = 0; i < randomNumberOfBoxes; i++) {
-  boxes.push(`
-    <div class="box">Box ${i + 1}</div>
-  `)
+generateButton.onclick = e => {
+  generateBoxes();
+  loadBoxesToDom();
 }
 
-container.innerHTML = boxes.join(" ");
+collapseButton.onclick = e => {
+  container.classList.contains('boxes-left') ?
+    container.classList.remove('boxes-left') :
+    container.classList.add('boxes-left');
+}
+
+randomButton.onclick = e => {
+  orderBoxes();
+  loadBoxesToDom();
+}
+
+const generateBoxes = () => {
+  boxes = [];
+  const randomNumberOfBoxes = Math.ceil(Math.random() * 20);
+
+  for (let i = 0; i < randomNumberOfBoxes; i++) {
+    boxes.push(`${i + 1}`)
+  }
+}
+
+const loadBoxesToDom = () => {
+  container.innerHTML = "";
+  
+  boxes.map( box => {
+    const div = document.createElement("div");
+    div.className = "box";
+    div.appendChild(document.createTextNode(`Box ${box}`));
+    container.appendChild(div);
+  })
+}
+
+const orderBoxes = () => {
+  let newOrder = [];
+
+  for (let i = 0; i < boxes.length; i++) {
+    if ( boxes.length - newOrder.length > 1 ) {
+      newOrder.push(boxes[i]);
+      newOrder.push(boxes[boxes.length - 1 - i]);
+    } else if ( boxes.length - newOrder.length === 1 ) {
+      newOrder.push(boxes[i]);
+    } else {
+      break;
+    }
+  }
+
+  boxes = newOrder;
+}
+
+generateBoxes();
+loadBoxesToDom();

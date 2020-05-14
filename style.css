@@ -19,8 +19,19 @@ html {
   height: 20rem;
 } 
 
+.boxes-left {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+}
+
+.boxes-left > * {
+  height: 20rem;
+  width: 35rem;
+}
+
 .box:nth-child(odd) {
-  background-color: #777;
+  background-color: greenyellow;
 }
 .box:nth-child(even) {
   background-color: blue;
@@ -33,8 +44,39 @@ html {
   font-size: 3rem;
 }
 
+.btn {
+  position: fixed;
+  bottom: 3rem;
+  border-radius: 1rem;
+  box-shadow: .5rem .5rem 2rem rgba(0, 0, 0, 0.53);
+  padding: 1rem;
+  cursor: pointer;
+}
+
+.btn:focus {
+  outline: none;
+}
+
+.btn-collapse {
+  left: 3rem;
+}
+
+.btn-generate {
+  left: 50%;
+  transform: translateX(-50%);
+}
+
+.btn-random {
+  right: 3rem;
+}
+
 @media only screen and (max-width: 37.5em) {
   .container {
+    display: grid;
     grid-template-columns: 1fr;
   } 
+
+  .btn-collapse {
+    display: none;
+  }
 }
