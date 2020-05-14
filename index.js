@@ -25,17 +25,17 @@ const generateBoxes = () => {
   const randomNumberOfBoxes = Math.ceil(Math.random() * 20);
 
   for (let i = 0; i < randomNumberOfBoxes; i++) {
-    boxes.push(`${i + 1}`)
+    boxes.push(`Box ${i + 1}`)
   }
 }
 
 const loadBoxesToDom = () => {
   container.innerHTML = "";
-  
-  boxes.map( box => {
+
+  boxes.forEach( box => {
     const div = document.createElement("div");
     div.className = "box";
-    div.appendChild(document.createTextNode(`Box ${box}`));
+    div.appendChild(document.createTextNode(box));
     container.appendChild(div);
   })
 }
