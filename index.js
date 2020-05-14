@@ -41,7 +41,7 @@ const loadBoxesToDom = () => {
 }
 
 const orderBoxes = () => {
-  let newOrder = [];
+  const newOrder = [];
 
   for (let i = 0; i < boxes.length; i++) {
     if ( boxes.length - newOrder.length > 1 ) {
